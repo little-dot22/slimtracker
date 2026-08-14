@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlimTracker · 体重记录</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="bg-deco">
+  <span class="deco cloud" style="top:6%; left:5%; animation-delay:0s">☁️</span>
+  <span class="deco star" style="top:14%; right:10%; animation-delay:.6s">⭐</span>
+  <span class="deco cloud" style="top:55%; left:2%; animation-delay:1.2s">☁️</span>
+  <span class="deco star" style="bottom:8%; right:4%; animation-delay:1.8s">✨</span>
+  <span class="deco cloud" style="bottom:14%; left:12%; animation-delay:2.4s">☁️</span>
+  <span class="deco star" style="top:60%; right:16%; animation-delay:.3s">🎈</span>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="mascot">
+      <svg class="penguin" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="pBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3a3a46"/>
+            <stop offset="1" stop-color="#20202a"/>
+          </linearGradient>
+          <linearGradient id="pBelly" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#f2eef7"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="43" cy="118" rx="16" ry="42" fill="#1c1c26" transform="rotate(18 43 118)"/>
+        <ellipse cx="157" cy="118" rx="16" ry="42" fill="#1c1c26" transform="rotate(-18 157 118)"/>
+        <ellipse cx="76" cy="184" rx="18" ry="10" fill="#f57c3f"/>
+        <ellipse cx="124" cy="184" rx="18" ry="10" fill="#f57c3f"/>
+        <ellipse cx="100" cy="114" rx="60" ry="72" fill="url(#pBody)"/>
+        <ellipse cx="100" cy="132" rx="38" ry="52" fill="url(#pBelly)"/>
+        <circle cx="81" cy="72" r="12" fill="#ffffff"/>
+        <circle cx="119" cy="72" r="12" fill="#ffffff"/>
+        <circle cx="83" cy="74" r="5.5" fill="#26262f"/>
+        <circle cx="117" cy="74" r="5.5" fill="#26262f"/>
+        <circle cx="85" cy="72" r="2.2" fill="#ffffff"/>
+        <circle cx="119" cy="72" r="2.2" fill="#ffffff"/>
+        <path d="M88 86 L112 86 L100 100 Z" fill="#f57c3f"/>
+        <circle cx="66" cy="90" r="5.5" fill="#ffb7b7" opacity="0.75"/>
+        <circle cx="134" cy="90" r="5.5" fill="#ffb7b7" opacity="0.75"/>
+        <path d="M58 102 C80 118 120 118 142 102 L142 114 C120 130 80 130 58 114 Z" fill="#f57c3f"/>
+        <path d="M136 108 q26 6 18 34 q-8 8 -17 2 q-2 -20 -1 -36 Z" fill="#f57c3f"/>
+        <path d="M58 108 C80 122 120 122 142 108" fill="none" stroke="#e2631f" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div class="bubble" id="bubble">哔哔~ 正在称体重…</div>
+    </div>
+    <div class="brand-text">
+      <h1>SlimTracker</h1>
+      <p class="subtitle">和小企鹅一起变瘦 · 目标 <b id="goalLabel">150</b> 斤 🐧</p>
+    </div>
+  </div>
+  <div class="update-hint" id="updateHint">正在载入…</div>
+</header>
+
+<main class="container">
+  <section class="stat-grid">
+    <div class="card stat" style="--accent:#6ed8a5;--accent-deep:#2f9e6d;--card-bg:#e7f9ef">
+      <div class="stat-icon">📅</div>
+      <div class="stat-body">
+        <div class="stat-value"><span id="statDays">–</span><span class="stat-unit">天</span></div>
+        <div class="stat-label">记录天数</div>
+      </div>
+    </div>
+    <div class="card stat" style="--accent:#6fb7ef;--accent-deep:#3c7fc0;--card-bg:#e8f3fd">
+      <div class="stat-icon">⚖️</div>
+      <div class="stat-body">
+        <div class="stat-value"><span id="statCurrent">–</span><span class="stat-unit">斤</span></div>
+        <div class="stat-label">当前体重</div>
+      </div>
+    </div>
+    <div class="card stat" style="--accent:#f2c14e;--accent-deep:#c08f1c;--card-bg:#fdf6e0">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-body">
+        <div class="stat-value"><span id="statBest">–</span><span class="stat-unit">斤</span></div>
+        <div class="stat-label">最佳纪录</div>
+      </div>
+    </div>
+    <div class="card stat" style="--accent:#ff9e7d;--accent-deep:#d16a45;--card-bg:#fff0ea">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-body">
+        <div class="stat-value"><span id="statDistance">–</span><span class="stat-unit">斤</span></div>
+        <div class="stat-label">距离目标</div>
+      </div>
+    </div>
+    <div class="card stat" style="--accent:#b48bf2;--accent-deep:#8a5bd6;--card-bg:#f4effe">
+      <div class="stat-icon">📉</div>
+      <div class="stat-body">
+        <div class="stat-value"><span id="statChange">–</span><span class="stat-unit">斤</span></div>
+        <div class="stat-label">累计变化</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card chart-card">
+    <div class="chart-header">
+      <div>
+        <h2>体重走势 🐾</h2>
+        <p class="chart-sub">把鼠标放到小圆点上，看看那天晚饭吃了啥</p>
+      </div>
+      <div class="legend">
+        <span class="legend-dot target"></span>目标线
+        <span class="legend-dot best"></span>最佳纪录
+      </div>
+    </div>
+    <div id="chart"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>数据源 weight_2026.md</span>
+  <span class="dot">·</span>
+  <span>页面自动刷新最新记录</span>
+  <span class="dot">·</span>
+  <span>企鹅先生 🐧</span>
+</footer>
+
+<script src="js/echarts.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
